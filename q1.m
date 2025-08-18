@@ -1,12 +1,12 @@
 clear;
 clc;
 
-x = [-4:0.001:4];
+x = [-3:0.02:3];
 y = 6.5*sin(2.1*x+pi/3);
 z = y;
 
 n = numel(z);
-f = 0.6;
+f = 0.6; % Alter this to set the fraction of the data to be corrupted
 numReplace = round(f*n);
 
 square_sum = 0;
