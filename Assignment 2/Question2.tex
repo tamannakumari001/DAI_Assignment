@@ -1,0 +1,232 @@
+\documentclass[12pt]{article}
+
+% Packages
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{geometry}
+\geometry{a4paper, margin=1in}
+
+% Environments
+\newenvironment{question}[1]{%
+  \vspace{1em}
+  \noindent{\Large\bfseries Question #1}\par\vspace{0.5em}
+  \itshape
+}{\par\vspace{1em}}
+
+\newenvironment{solution}{%
+  \vspace{1em}
+  \noindent{\Large\bfseries Solution}\par\vspace{0.5em}
+  \normalfont
+}{\qed\par}
+\begin{document}
+
+\begin{question}{1}
+
+\end{question}
+\begin{solution}
+\subsubsection*{a.}
+(i) Total number of test conducted = $T(s)$.
+
+\end{solution}
+
+\begin{question}{2}
+To derive the PDF of random variable $Z = XY$, where $X$ and $Y$ are independent random variables with known PDFs $f_X(x)$ and $f_Y(y)$
+\end{question}
+
+\begin{solution}
+\[P(XY \leq z) = F_Z(z)\]
+%integral form in terms of f_Z
+\[= \int_{-\infty}^{z}  f_Z(z) dz\]
+Probability that variable Y lies between y and y + dy
+\[P(y \leq Y \leq y + dy) = f_Y(y)dy\]
+for some y.
+Now, for a fixed value of y, we have
+\[P(XY \leq z | Y = y) = P(X \leq \frac{z}{y}) = F_X(\frac{z}{y})\]
+%give me three cases for y>0 and y<0 and y = 0 
+So for y $> 0$,
+\[P(XY \leq z | Y = y) = F_X(\frac{z}{y})\]
+\[P(Xy \leq z) = F_X(\frac{z}{y}) P(Y = y)\]
+for y $< 0$,
+\[P(XY \leq z | Y = y) = 1 - F_X(\frac{z}{y})\]
+\[P(XY \leq z) = 1 - F_X(\frac{z}{y}) P(Y = y)\]
+and for y $= 0$,
+\[P(XY \leq z | Y = 0) = \int_{0}^{\infty}f_Z(z) dz\]
+\[P(XY \leq z) = \int_{0}^{\infty}f_Z(z) dz P(Y = 0)\]
+So, we need to integrate on all possible values of y. We can write
+\[F_Z(z) = \int_{-\infty}^{0} (1 - F_X(\frac{z}{y})) f_Y(y) dy + \int_{0}^{\infty} F_X(\frac{z}{y}) f_Y(y) dy + (\int_{0}^{\infty}f_Z(z) dz ) P(Y = 0)\]
+Put $P(Y = 0) = 0 $.\\Now, differentiating w.r.t z, we get
+\[f_Z(z) = \int_{-\infty}^{0} -\frac{1}{y} f_X(\frac{z}{y}) f_Y(y) dy + \int_{0}^{\infty} \frac{1}{y} f_X(\frac{z}{y}) f_Y(y) dy + 0\]
+or
+\[f_Z(z) = \int_{-\infty}^{\infty} \frac{1}{|y|} f_X(\frac{z}{y}) f_Y(y) dy\]
+which is the required PDF of Z.
+
+%make a conclusion paragraph
+Conclusion : The PDF of the product of two independent random variables X and Y is given by the integral formula :
+\[f_Z(z) = \int_{-\infty}^{\infty} \frac{1}{|y|} f_X(\frac{z}{y}) f_Y(y) dy\]
+
+\begin{question}{3}
+\end{question}
+
+\begin{solution}
+  The correct estimate for E(X) is: $\hat{x}  =  \frac{1}{n}\sum_{i=1}^{n} x_i$
+
+  Reason:
+  \[E(\hat{x}) = \frac{\sum_{i=1}^{i=n} E(x_i)}{n}\]
+  \[= \frac{nE(x_i)}{n} = E(x_i) = E(X)\]
+  But when we talk about the estimate 
+  \[\hat{x} =\frac{1}{n}\sum_{i=1}^{n}f_X(x_i) x_i \]
+  It does not give an expected estimate for E(X).
+
+  \[E(xf_X(x)) = \int_{-\infty}^{\infty} x {f_X(x)}^2 dx \neq E(X)\] 
+  Estimate of $\hat{x}$ using the second formula will be
+  \[E(\hat{x}) = \frac{\sum_{i=i}^{n} E(f_X(x_i)x_i)}{n}\] 
+  \[\neq E(X)\]
+
+  Hence, we have shown the correct estimate for E(X) will be $\hat{x}  =  \frac{1}{n}\sum_{i=1}^{n} x_i$
+  by showing that the other formulae is estimating the expectation for some other random variable.
+
+
+  
+\end{solution}
+
+\begin{question}{5}
+\end{question}
+
+\begin{solution}
+ \[P(X \geq x ) \leq e^{-tx}\phi _X(t)\]
+ for t $> $0 and
+    \[P(X \leq x) \leq e^{-tx}\phi _X(t)\]
+    for t $< $0,
+    where $\phi _X(t)$ is the MGF of X.
+
+    For a continuous random variable X, we have
+    \[\phi _X(t) = E[e^{tX}] = \int_{-\infty}^{\infty} e^{tx} f_X(x) dx\]
+    where $f_X(x)$ is the PDF of X.
+
+    $e^tx$ is strictly increasing for $t>0$ and strictly decreasing for $t<0$.
+    So, for either cases we can say.
+    \[P(X \geq x) = P(e^{tX} \geq e^{tx})\]
+    \[P(X \leq x) = P(e^{tX} \geq e^{tx})\]     .Using Markov's inequality, we can write
+    \[P(X \geq x) = P(e^{tX} \geq e^{tx}) \leq \frac{E[e^{tX}]}{e^{tx}} = e^{-tx} \phi _X(t)\]
+    for t $> 0$.
+    Similarly, for t $< 0$, we can write
+    \[P(X \leq x) = P(e^{tX} \geq e^{tx}) \leq \frac{E[e^{tX}]}{e^{tx}} = e^{-tx} \phi _X(t)\]
+
+Thus, we prove the two inequalities.\\
+
+    % For the first part, 
+    % % split the expectation into two parts
+    % \[E[e^{tX}] = \int_{-\infty}^{x} e^{tp} f_X(p) dp + \int_{x}^{\infty} e^{tp} f_X(p) dp\]
+    % % take the second part and replace p with x + h
+    % \[\geq   \int_{0}^{\infty} e^{t(x + h)} f_X(x + h) dh\]
+    % % multiply with e^{-tx} and take it inside the integral
+    % %label this as (1)
+    % \[= e^{tx} \int_{0}^{\infty} e^{th} f_X(x + h) dh\] 
+    % %now taking rhs of our inequality
+    % LHS of our inequality is
+    % \[P(X \geq x) = \int_{x}^{\infty} f_X(p) dp\]
+    % replace p with x + h
+    % % replace p with x + h
+    % \[= \int_{0}^{\infty} f_X(x + h) dh\]
+    % %label this as (2)
+    % RHS of our inequality is 
+    % \[e^{-tx} \phi _X(t)\]
+    % Replace with the value of $\phi _X(t)$ from previous derivation
+    % \[= e^{-tx} (e^{tx} \int_{0}^{\infty} e^{th} f_X(x + h) dh + \int_{-\infty}^{x} e^{tp} f_X(p) dp)\]
+    % \[\geq \int_{0}^{\infty} e^{th} f_X(x + h) dh\]
+    % %label this as (3)
+    % Since t $> 0$, e$^{th}$ $>$ 1 for h $>$ 0.
+    % we can say that,
+    % \[ \int_{0}^{\infty} e^{th} f_X(x + h) dh \geq \int_{0}^{\infty} f_X(x + h) dh \]
+
+    % Now for the second part,
+    % % split the expectation into two parts
+    % \[E[e^{tX}] = \int_{-\infty}^{x} e^{tp} f_X(p) dp + \int_{x}^{\infty} e^{tp} f_X(p) dp\]
+    % % take the first part and replace p with x - h
+    % Replace p with x - h
+    % \[\geq   \int_{0}^{\infty} e^{t(x - h)} f_X(x - h) dh\]
+    % % multiply with e^{-tx} and take it inside the integral
+    % %label this as (4)
+    % \[= e^{tx} \int_{0}^{\infty} e^{-th} f_X(x - h) dh\] 
+    % %now taking rhs of our inequality
+    % LHS of our inequality is
+    % \[P(X \leq x) = \int_{-\infty}^{x} f_X(p) dp\]
+    % Replace p with x - h
+    % \[= \int_{0}^{\infty} f_X(x - h) dh\]
+    % %label this as (5)
+    % RHS of our inequality is 
+    % \[e^{-tx} \phi _X(t)\]
+    % Replace with the value of $\phi _X(t)$ from previous derivation
+    % \[= e^{-tx} (e^{tx} \int_{0}^{\infty} e^{-th} f_X(x - h) dh + \int_{x}^{\infty} e^{tp} f_X(p) dp)\]
+    % \[\geq \int_{0}^{\infty} e^{-th} f_X(x - h) dh\]
+    % %label this as (6)
+    % Since t $< 0$, e$^{-th}$ $>$ 1 for h $>$ 0.
+    % we can say that,
+    % \[ \int_{0}^{\infty} e^{-th} f_X(x - h) dh \geq \int_{0}^{\infty} f_X(x - h) dh \]
+
+    % Hence, We proved the two inequalities.
+
+Now we want to show that for $t \geq 0$,
+    \[
+\Pr\!\big(X > (1 + \delta)\mu \big) \leq \frac{e^{\mu(e^t - 1)}}{e^{(1+\delta)t\mu}}, 
+\quad t \geq 0, \, \delta > 0
+\]
+where $\mu = E[X]$.
+For n independent Bernoulli random variable,
+ 
+
+\[
+\mu = \sum_{i=1}^n p_i
+\]
+
+Now, using the first part of the inequality derived above,
+\[P(X \geq (1 + \delta)\mu ) \leq e^{-t(1 + \delta)\mu} \phi _X(t)\]
+for t $> 0$.
+Now, we need to find the MGF of X.
+Since X is the sum of n independent Bernoulli random variables, we can write
+\[\phi _X(t) = E[e^{tX}] = E[e^{t\sum_{i=1}^n X_i}] = \prod_{i=1}^n E[e^{tX_i}]\]
+Now, for a Bernoulli random variable $X_i$ with parameter $p_i$, we have
+\[E[e^{tX_i}] = p_i e^t + (1 - p_i) = 1 + p_i(e^t - 1)\]
+Using the propert of MGFs that.
+\[\phi _{X_1+X_2 + .. + X_N}(t) = \phi_{X_1}(t)\phi_{X_2}(t)...\phi_{X_N}(t)\]
+we can write
+\[\phi _X(t) = \prod_{i=1}^n (1 + p_i(e^t - 1))\]
+Using the inequality $1 + x \leq e^x$, we get
+\[\phi _X(t) \leq \prod_{i=1}^n e^{p_i(e^t - 1)} = e^{(e^t - 1)\sum_{i=1}^n p_i} = e^{\mu(e^t - 1)}\]
+So, we can write
+\[P(X \geq (1 + \delta)\mu ) \leq e^{-t(1 + \delta)\mu} e^{\mu(e^t - 1)}\]
+or
+\[P(X \geq (1 + \delta)\mu ) \leq \frac{e^{\mu(e^t - 1)}}{e^{(1+\delta)t\mu}}\]
+which is the required result.Hence, proven.\\
+
+
+\begin{question}{6}
+\end{question}
+
+
+\begin{solution}
+    T : Trial Number until first heads
+    \[P(T = t) = (1 - p)^{t - 1} p\]
+    For n independent coin tosses,
+    \[X = \sum_{i=1}^n T_i\]
+    where $T_i$ is the trial number until first heads for the i$^{th}$ coin.
+    To find expectation of X, we use 
+    \[E[X] = E[\sum_{i=1}^n T_i] = \sum_{i=1}^n E[T_i]\]
+    \[E[T_i] = i(1 - p)^{t - 1} p\]
+    \[E[X] = \sum_{i=1}^ni(1 - p)^{i - 1} p\]
+    This is an arithmetico-geometric series.
+    Multiplying by 1-p,
+    \[(1 - p)E[X] = \sum_{i=1}^n i(1 - p)^i p\]
+    Subtracting the two equations,
+    \[pE[X] = p(1 + (1-p) + (1-p)^2 + ... + (1-p)^{(n-1)} - n(1-p)^n)\]
+    \[E[X] = \frac{1 - (1-p)^n}{p} - n(1-p)^n\]
+    \[E[X] = \frac{n}{p}(1 - (1-p)^n(1 + np))\]
+    
+    
+    
+\end{solution}
+
+\end{solution}
+
+\end{solution}
+
+\end{document}
