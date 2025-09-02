@@ -38,20 +38,20 @@ To derive the PDF of random variable $Z = XY$, where $X$ and $Y$ are independent
 \[= \int_{-\infty}^{z}  f_Z(z) dz\]
 Probability that variable Y lies between y and y + dy
 \[P(y \leq Y \leq y + dy) = f_Y(y)dy\]
-for some y.
+for some y.\\
 Now, for a fixed value of y, we have
-\[P(XY \leq z | Y = y) = P(X \leq \frac{z}{y}) = F_X(\frac{z}{y})\]
+\[P(XY \leq z | Y = y) \]
 %give me three cases for y>0 and y<0 and y = 0 
-So for y $> 0$,
+For y $> 0$,
 \[P(XY \leq z | Y = y) = F_X(\frac{z}{y})\]
 \[P(Xy \leq z) = F_X(\frac{z}{y}) P(Y = y)\]
-for y $< 0$,
+For y $< 0$,
 \[P(XY \leq z | Y = y) = 1 - F_X(\frac{z}{y})\]
-\[P(XY \leq z) = 1 - F_X(\frac{z}{y}) P(Y = y)\]
+\[P(Xy \leq z) =( 1 - F_X(\frac{z}{y})) P(Y = y)\]
 and for y $= 0$,
 \[P(XY \leq z | Y = 0) = \int_{0}^{\infty}f_Z(z) dz\]
-\[P(XY \leq z) = \int_{0}^{\infty}f_Z(z) dz P(Y = 0)\]
-So, we need to integrate on all possible values of y. We can write
+\[P(XY \leq z) = (\int_{0}^{\infty}f_Z(z) dz )P(Y = 0)\]
+So, we need to integrate on all possible values of y. Using the value of P(Y = y), we can write
 \[F_Z(z) = \int_{-\infty}^{0} (1 - F_X(\frac{z}{y})) f_Y(y) dy + \int_{0}^{\infty} F_X(\frac{z}{y}) f_Y(y) dy + (\int_{0}^{\infty}f_Z(z) dz ) P(Y = 0)\]
 Put $P(Y = 0) = 0 $.\\Now, differentiating w.r.t z, we get
 \[f_Z(z) = \int_{-\infty}^{0} -\frac{1}{y} f_X(\frac{z}{y}) f_Y(y) dy + \int_{0}^{\infty} \frac{1}{y} f_X(\frac{z}{y}) f_Y(y) dy + 0\]
@@ -79,6 +79,7 @@ Conclusion : The PDF of the product of two independent random variables X and Y 
   \[E(xf_X(x)) = \int_{-\infty}^{\infty} x {f_X(x)}^2 dx \neq E(X)\] 
   Estimate of $\hat{x}$ using the second formula will be
   \[E(\hat{x}) = \frac{\sum_{i=i}^{n} E(f_X(x_i)x_i)}{n}\] 
+  \[= \frac{nE(f_X(x_i)x_i)}{n} = E(f_X(x_i)x_i) = \int_{-\infty}^{\infty} x {f_X(x)}^2 dx\]  
   \[\neq E(X)\]
 
   Hence, we have shown the correct estimate for E(X) will be $\hat{x}  =  \frac{1}{n}\sum_{i=1}^{n} x_i$
@@ -104,8 +105,14 @@ Conclusion : The PDF of the product of two independent random variables X and Y 
 
     $e^tx$ is strictly increasing for $t>0$ and strictly decreasing for $t<0$.
     So, for either cases we can say.
-    \[P(X \geq x) = P(e^{tX} \geq e^{tx})\]
-    \[P(X \leq x) = P(e^{tX} \geq e^{tx})\]     .Using Markov's inequality, we can write
+    \\For a random variable X and a constant x,
+    \\ \\ \\ $X \geq x $ iff $ e ^ {tX} \geq e ^ {tx}$ for $t > 0$
+    \\ $X \leq x $ iff $ e ^ {tX} \geq e ^ {tx}$ for $t < 0$
+    \\ \\ \[P(X \geq x) = P(e^{tX} \geq e^{tx})\]
+    for t $> 0$ and
+    \[P(X \leq x) = P(e^{tX} \geq e^{tx})\] 
+    for t $ < 0$.
+    \\Using Markov's inequality, we can write
     \[P(X \geq x) = P(e^{tX} \geq e^{tx}) \leq \frac{E[e^{tX}]}{e^{tx}} = e^{-tx} \phi _X(t)\]
     for t $> 0$.
     Similarly, for t $< 0$, we can write
@@ -182,11 +189,10 @@ Now, using the first part of the inequality derived above,
 \[P(X \geq (1 + \delta)\mu ) \leq e^{-t(1 + \delta)\mu} \phi _X(t)\]
 for t $> 0$.
 Now, we need to find the MGF of X.
-Since X is the sum of n independent Bernoulli random variables, we can write
-\[\phi _X(t) = E[e^{tX}] = E[e^{t\sum_{i=1}^n X_i}] = \prod_{i=1}^n E[e^{tX_i}]\]
+\[\phi _X(t) = E[e^{tX}] \]
 Now, for a Bernoulli random variable $X_i$ with parameter $p_i$, we have
 \[E[e^{tX_i}] = p_i e^t + (1 - p_i) = 1 + p_i(e^t - 1)\]
-Using the propert of MGFs that.
+Since X is the sum of independent random variables. Using the property of MGFs that.
 \[\phi _{X_1+X_2 + .. + X_N}(t) = \phi_{X_1}(t)\phi_{X_2}(t)...\phi_{X_N}(t)\]
 we can write
 \[\phi _X(t) = \prod_{i=1}^n (1 + p_i(e^t - 1))\]
@@ -204,20 +210,18 @@ which is the required result.Hence, proven.\\
 
 
 \begin{solution}
-    T : Trial Number until first heads
+    T : Trial Number at which first heads appears
     \[P(T = t) = (1 - p)^{t - 1} p\]
     For n independent coin tosses,
-    \[X = \sum_{i=1}^n T_i\]
-    where $T_i$ is the trial number until first heads for the i$^{th}$ coin.
+    Let $P(T = i)  = T_i$ be the trial that first heads comes on the i$^{th}$ coin.
     To find expectation of X, we use 
-    \[E[X] = E[\sum_{i=1}^n T_i] = \sum_{i=1}^n E[T_i]\]
-    \[E[T_i] = i(1 - p)^{t - 1} p\]
-    \[E[X] = \sum_{i=1}^ni(1 - p)^{i - 1} p\]
+    \[E[T] = \sum_{i=1}^n i * P( T_i) \]
+    \[E[T] = \sum_{i=1}^ni(1 - p)^{i - 1} p\]
     This is an arithmetico-geometric series.
     Multiplying by 1-p,
-    \[(1 - p)E[X] = \sum_{i=1}^n i(1 - p)^i p\]
+    \[(1 - p)E[T] = \sum_{i=1}^n i(1 - p)^i p\]
     Subtracting the two equations,
-    \[pE[X] = p(1 + (1-p) + (1-p)^2 + ... + (1-p)^{(n-1)} - n(1-p)^n)\]
+    \[pE[] = p(1 + (1-p) + (1-p)^2 + ... + (1-p)^{(n-1)} - n(1-p)^n)\]
     \[E[X] = \frac{1 - (1-p)^n}{p} - n(1-p)^n\]
     \[E[X] = \frac{n}{p}(1 - (1-p)^n(1 + np))\]
     
